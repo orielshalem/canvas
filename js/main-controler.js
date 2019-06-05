@@ -9,14 +9,17 @@ function draw(ev) {
     const { offsetX, offsetY } = ev
 
     switch (document.querySelector('.select').value) {
-        case 'triangle':
-            drawTriangle(offsetX, offsetY)
+        case 'special triangle':
+            drawSpecialTriangle(offsetX, offsetY)
             break;
         case 'rect':
             drawRect(offsetX, offsetY)
             break;
         case 'circle':
             drawArc(offsetX, offsetY)
+            break;
+        case 'triangle':
+            drawTriangle(offsetX, offsetY)
             break;
     }
     ctx.restore()
@@ -42,11 +45,20 @@ function drawArc(x, y) {
     ctx.stroke();
 }
 
-function drawTriangle(x, y) {
+function drawSpecialTriangle(x, y) {
     ctx.beginPath();
     ctx.moveTo(y, y-30);
     ctx.lineTo(x, y);
     ctx.lineTo(x, x-5);
+    ctx.closePath()
+    ctx.stroke();
+}
+
+function drawTriangle(x, y) {
+    ctx.beginPath();
+    ctx.moveTo(x, y);
+    ctx.lineTo(x+50, y+25);
+    ctx.lineTo(x+50, y-25);
     ctx.closePath()
     ctx.stroke();
 }
