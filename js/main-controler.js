@@ -5,23 +5,22 @@ console.log(canvas)
 const ctx = canvas.getContext('2d');
 
 
-let gCurrElement = 'rect'
+let gCurrElement = 'triangle'
 
 
 function draw(ev) {
     ctx.save()
-    console.log(ev)
-    const {offsetX, offsetY} = ev
+    const { offsetX, offsetY } = ev
 
     switch (gCurrElement) {
         case 'triangle':
-            drawTriangle()
+            drawTriangle(offsetX, offsetY)
             break;
         case 'rect':
             drawRect(offsetX, offsetY)
             break;
-        case 'text':
-            drawText('test',offsetX, offsetY)
+        case 'arc':
+            drawArc(offsetX, offsetY)
             break;
     }
     ctx.restore()
@@ -39,6 +38,19 @@ function drawRect(x,y) {
     ctx.rect(x,y, 50, 50)
     ctx.fillStyle = getColor()
     ctx.fillRect(x,y, 50, 50)
-    ctx.stroke()
-    // ctx.fill()
+}
+
+function drawArc(x, y) {
+    ctx.beginPath();
+    ctx.arc(x, y, 50, 0, 2 * Math.PI);
+    ctx.stroke();
+}
+
+function drawTriangle(x, y) {
+    ctx.beginPath();
+    ctx.moveTo(y, y-30);
+    ctx.lineTo(x, y);
+    ctx.lineTo(x, x-5);
+    ctx.closePath()
+    ctx.stroke();
 }
