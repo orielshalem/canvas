@@ -34,7 +34,6 @@ function drawArc(x, y) {
 }
 
 function drawTriangle(x, y) {
-    // console.log('hi')
     ctx.beginPath();
     ctx.moveTo(y, y-30);
     ctx.lineTo(x, y);
