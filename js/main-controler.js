@@ -5,6 +5,10 @@ let gIsOccupied = false;
 let canvas;
 let ctx;
 
+function resetCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+}
+
 function onInit() {
     canvas = document.getElementById('canvas');
     ctx = canvas.getContext('2d');
@@ -15,13 +19,14 @@ function onInit() {
 function checkMouseDown() {
     document.body.onmousedown =  () => ++gMouseDown;
     document.body.onmouseup =  () => --gMouseDown;
+    console.log(gMouseDown)
     return gMouseDown;
 }
 
 function drawDelay() {
     setTimeout(() => {
         gIsOccupied = false
-    },50)
+    },10)
 }
 
 function draw(ev) {
