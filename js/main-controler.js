@@ -5,37 +5,45 @@ let gIsOccupied = false;
 let canvas;
 let ctx;
 
-function resetCanvas() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height)
-}
-
 function onInit() {
+    createShapes();
     canvas = document.getElementById('canvas');
     ctx = canvas.getContext('2d');
     canvas.width = window.innerWidth - 50
     canvas.height = window.innerHeight - 100
 }
 
+function resetCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+}
+
 function checkMouseDown() {
-    document.body.onmousedown =  () => ++gMouseDown;
-    document.body.onmouseup =  () => --gMouseDown;
+    document.body.onmousedown = () => ++gMouseDown;
+    document.body.onmouseup = () => --gMouseDown;
     return gMouseDown;
 }
 
-function drawDelay() {
-    setTimeout(() => {
-        gIsOccupied = false
-    },10)
+function drawDelay(option) {
+    if (option === 'random') {
+        setTimeout(() => {
+            gIsOccupied = false
+        }, 200)
+    } else {
+        setTimeout(() => {
+            gIsOccupied = false
+        }, 10)
+    }
 }
 
 function draw(ev) {
     if (!checkMouseDown() || gIsOccupied) return
-    drawDelay();
+    let option = document.querySelector('.select').value
+    drawDelay(option);
     gIsOccupied = true;
     ctx.save()
     const { offsetX, offsetY } = ev
-
-    switch (document.querySelector('.select').value) {
+    let randomShape = randomShapes();
+    switch (option) {
         case 'special triangle':
             drawSpecialTriangle(offsetX, offsetY)
             break;
@@ -48,6 +56,19 @@ function draw(ev) {
         case 'triangle':
             drawTriangle(offsetX, offsetY)
             break;
+        case 'random':
+            if (randomShape === 'rect') {
+                drawRect(offsetX, offsetY);
+                break;
+            }
+            if (randomShape === 'circle') {
+                drawArc(offsetX, offsetY);
+                break;
+            }
+            if (randomShape === 'triangle') {
+                drawTriangle(offsetX, offsetY);
+                break;
+            }
     }
     ctx.restore()
 }
