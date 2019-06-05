@@ -11,7 +11,7 @@ function onInit() {
 }
 
 function draw(ev) {
-    ctx.save()
+    // ctx.save()
     const { offsetX, offsetY } = ev
 
     switch (document.querySelector('.select').value) {
@@ -65,9 +65,15 @@ function drawSpecialTriangle(x, y) {
 function drawTriangle(x, y) {
     ctx.beginPath();
     ctx.moveTo(x, y);
-    ctx.lineTo(x+50, y+25);
-    ctx.lineTo(x+50, y-25);
+    ctx.lineTo(x + 50, y + 25);
+    ctx.lineTo(x + 50, y - 25);
     ctx.closePath();
     ctx.strokeStyle = getColor();
     ctx.stroke();
+}
+
+function downloadCanvas(elLink) {
+    const data = canvas.toDataURL();
+    elLink.href = data;
+    elLink.download = 'my-img.jpg';
 }
