@@ -65,8 +65,8 @@ function drawSpecialTriangle(x, y) {
 function drawTriangle(x, y) {
     ctx.beginPath();
     ctx.moveTo(x, y);
-    ctx.lineTo(x+50, y+25);
-    ctx.lineTo(x+50, y-25);
+    ctx.lineTo(x+50, y);
+    ctx.lineTo(x+50, y-50);
     ctx.closePath()
     ctx.stroke();
 }
