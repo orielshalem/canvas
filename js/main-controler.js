@@ -12,14 +12,14 @@ function draw(ev) {
     ctx.save()
     const { offsetX, offsetY } = ev
 
-    switch (gCurrElement) {
+    switch (document.querySelector('.select').value) {
         case 'triangle':
             drawTriangle(offsetX, offsetY)
             break;
         case 'rect':
             drawRect(offsetX, offsetY)
             break;
-        case 'arc':
+        case 'circle':
             drawArc(offsetX, offsetY)
             break;
     }
