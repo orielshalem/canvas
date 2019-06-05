@@ -67,6 +67,7 @@ function drawTriangle(x, y) {
     ctx.moveTo(x, y);
     ctx.lineTo(x+50, y+25);
     ctx.lineTo(x+50, y-25);
-    ctx.closePath()
+    ctx.closePath();
+    ctx.strokeStyle = getColor();
     ctx.stroke();
 }
