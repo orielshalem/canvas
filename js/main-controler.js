@@ -1,12 +1,8 @@
-
+'use strict';
 
 const canvas = document.getElementById('canvas');
 console.log(canvas)
 const ctx = canvas.getContext('2d');
-
-
-let gCurrElement = 'triangle'
-
 
 function draw(ev) {
     ctx.save()
