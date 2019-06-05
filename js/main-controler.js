@@ -1,5 +1,7 @@
 'use strict';
 
+let gMouseDown = 0;
+let gIsOccupied = false;
 let canvas;
 let ctx;
 
@@ -10,8 +12,23 @@ function onInit() {
     canvas.height = window.innerHeight - 100
 }
 
+function checkMouseDown() {
+    document.body.onmousedown =  () => ++gMouseDown;
+    document.body.onmouseup =  () => --gMouseDown;
+    return gMouseDown;
+}
+
+function drawDelay() {
+    setTimeout(() => {
+        gIsOccupied = false
+    },50)
+}
+
 function draw(ev) {
-    // ctx.save()
+    if (!checkMouseDown() || gIsOccupied) return
+    drawDelay();
+    gIsOccupied = true;
+    ctx.save()
     const { offsetX, offsetY } = ev
 
     switch (document.querySelector('.select').value) {
@@ -65,8 +82,8 @@ function drawSpecialTriangle(x, y) {
 function drawTriangle(x, y) {
     ctx.beginPath();
     ctx.moveTo(x, y);
-    ctx.lineTo(x + 50, y + 25);
-    ctx.lineTo(x + 50, y - 25);
+    ctx.lineTo(x + 50, y);
+    ctx.lineTo(x + 50, y - 50);
     ctx.closePath();
     ctx.strokeStyle = getColor();
     ctx.stroke();
