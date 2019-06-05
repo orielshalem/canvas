@@ -27,12 +27,18 @@ function draw(ev) {
     ctx.restore()
 }
 
+function getShape() {
+    return document.querySelector('.select').value;
+}
 
+function getColor() {
+    return document.querySelector('.color').value;
+}
 
 function drawRect(x,y) {
-    ctx.rect(x,y, 150, 200)
-    ctx.fillStyle = 'white'
-    ctx.fillRect(x,y, 150, 150)
+    ctx.rect(x,y, 50, 50)
+    ctx.fillStyle = getColor()
+    ctx.fillRect(x,y, 50, 50)
     ctx.stroke()
     // ctx.fill()
 }
