@@ -9,3 +9,6 @@ ctx.fillRect(10, 10, 150, 100);
 
 
 console.log('hi')
+
+
+console.log('still')
